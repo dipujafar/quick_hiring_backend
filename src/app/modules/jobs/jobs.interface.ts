@@ -8,10 +8,10 @@ export interface IJobs {
   company: string;
   employment_type: string;
   job_type: string;
-  gender: string[];
-  education: string[];
-  salaryMin: string | null;
-  salaryMax: string | null;
+  gender: string;
+  education: string;
+  salaryMin: string;
+  salaryMax: string;
   division: string;
   street: string;
   deadline: string;
@@ -19,6 +19,7 @@ export interface IJobs {
   requirements: string;
   responsibilities: string;
   benefits: string;
+  status: string;
   isDeleted: boolean;
 }
 

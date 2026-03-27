@@ -2,9 +2,18 @@ import { Request, Response } from 'express';
 import catchAsync from '../../utils/catchAsync';
 import { jobsService } from './jobs.service';
 import sendResponse from '../../utils/sendResponse';
+import { uploadToS3 } from '../../utils/s3';
 
 const createJobs = catchAsync(async (req: Request, res: Response) => {
+  if (req.file) {
+    req.body.thumbnailIcon = await uploadToS3({
+      file: req.file,
+      fileName: `job/thumbnailIcon/${Math.floor(100000 + Math.random() * 900000)}`,
+    });
+  }
+
   const result = await jobsService.createJobs(req.body);
+
   sendResponse(res, {
     statusCode: 201,
     success: true,

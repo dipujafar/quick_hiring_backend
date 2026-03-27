@@ -10,8 +10,8 @@ const jobsSchema = new Schema<IJobs>(
     company: { type: String, required: true },
     employment_type: { type: String, required: true },
     job_type: { type: String, required: true },
-    gender: { type: [String], required: true },
-    education: { type: [String], required: true },
+    gender: { type: String, required: true },
+    education: { type: String, required: true },
     salaryMin: { type: String, required: true },
     salaryMax: { type: String, required: true },
     division: { type: String, required: true },
@@ -21,6 +21,7 @@ const jobsSchema = new Schema<IJobs>(
     requirements: { type: String, required: true },
     responsibilities: { type: String, required: true },
     benefits: { type: String, required: true },
+    status: { type: String, required: true, default: 'active' },
     isDeleted: { type: 'boolean', default: false },
   },
   {
