@@ -1,4 +1,3 @@
-
 import { USER_ROLE } from '../modules/user/user.constants';
 import { User } from '../modules/user/user.models';
 
@@ -9,9 +8,9 @@ export async function defaultTask() {
   const admin = await User.findOne({ role: USER_ROLE?.admin });
   if (!admin) {
     await User.create({
-      name: 'MD Nazmul Hasan',
+      name: 'Jafar Uddin Dipu',
       email: 'admin@gmail.com',
-      phoneNumber: '+8801321834780',
+      phoneNumber: '+8801613790366',
       password: '112233',
       role: 'admin',
       verification: {

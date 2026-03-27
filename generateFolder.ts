@@ -39,7 +39,7 @@ function createFolderAndFiles(parentFolderPath, folderName) {
 import httpStatus from 'http-status';
 import { I${capitalizeFirstLetter(folderName)} } from './${folderName}.interface';
 import ${capitalizeFirstLetter(folderName)} from './${folderName}.models';
-import QueryBuilder from '../../builder/QueryBuilder';
+import QueryBuilder from '../../class/builder/QueryBuilder';
 import AppError from '../../error/AppError';
 
 const create${capitalizeFirstLetter(folderName)} = async (payload: I${capitalizeFirstLetter(folderName)}) => {
