@@ -15,7 +15,7 @@ const createJobs = async (payload: IJobs) => {
 const getAllJobs = async (query: Record<string, any>) => {
   query['isDeleted'] = false;
   const jobsModel = new QueryBuilder(Jobs.find(), query)
-    .search([])
+    .search(['title'])
     .filter()
     .paginate()
     .sort()
