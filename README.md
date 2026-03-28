@@ -12,6 +12,11 @@ The API is structured with a clean modular architecture under `src/app/modules/`
 
 ---
 
+## ✨ Live Links
+
+- Frontend Live Link [QuickHiring Frontend](http://206.162.244.154:3000)
+- Backend server running — see [QuickHiring Backend](http://206.162.244.154:7128)
+
 ## ✨ Features
 
 ### 💼 Jobs
