@@ -1,4 +1,3 @@
-
 import httpStatus from 'http-status';
 import { IApplications } from './applications.interface';
 import Applications from './applications.models';
@@ -14,8 +13,11 @@ const createApplications = async (payload: IApplications) => {
 };
 
 const getAllApplications = async (query: Record<string, any>) => {
-query["isDeleted"] = false;
-  const applicationsModel = new QueryBuilder(Applications.find(), query)
+  query['isDeleted'] = false;
+  const applicationsModel = new QueryBuilder(
+    Applications.find().populate(['jobId']),
+    query,
+  )
     .search([])
     .filter()
     .paginate()
@@ -39,8 +41,13 @@ const getApplicationsById = async (id: string) => {
   return result;
 };
 
-const updateApplications = async (id: string, payload: Partial<IApplications>) => {
-  const result = await Applications.findByIdAndUpdate(id, payload, { new: true });
+const updateApplications = async (
+  id: string,
+  payload: Partial<IApplications>,
+) => {
+  const result = await Applications.findByIdAndUpdate(id, payload, {
+    new: true,
+  });
   if (!result) {
     throw new Error('Failed to update Applications');
   }
@@ -51,7 +58,7 @@ const deleteApplications = async (id: string) => {
   const result = await Applications.findByIdAndUpdate(
     id,
     { isDeleted: true },
-    { new: true }
+    { new: true },
   );
   if (!result) {
     throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete applications');
