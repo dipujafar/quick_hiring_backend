@@ -61,10 +61,35 @@ const deleteJobs = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+// ----------------------------- feature jobs controller ------------------------------
+const featureJobs = catchAsync(async (req: Request, res: Response) => {
+  const { isFeatured } = req.body;
+  const id = req.params.id;
+  const result = await jobsService.featureJobs(id, isFeatured || true);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Jobs feature status updated successfully',
+    data: result,
+  });
+});
+
+const getFeaturedJobs = catchAsync(async (req: Request, res: Response) => {
+  const result = await jobsService.getFeaturedJobs(req.query);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Featured jobs fetched successfully',
+    data: result,
+  });
+});
+
 export const jobsController = {
   createJobs,
   getAllJobs,
   getJobsById,
   updateJobs,
   deleteJobs,
+  featureJobs,
+  getFeaturedJobs,
 };

@@ -23,4 +23,8 @@ router.delete('/:id', auth(USER_ROLE.admin), jobsController.deleteJobs);
 router.get('/:id', jobsController.getJobsById);
 router.get('/', jobsController.getAllJobs);
 
+// ----------------------------- feature jobs routes ------------------------------
+router.patch('/feature/:id', auth(USER_ROLE.admin), jobsController.featureJobs);
+router.get('/feature/featured', jobsController.getFeaturedJobs);
+
 export const jobsRoutes = router;

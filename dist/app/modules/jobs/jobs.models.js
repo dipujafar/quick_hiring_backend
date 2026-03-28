@@ -1,8 +1,7 @@
-import { model, Schema } from 'mongoose';
-import { IJobs, IJobsModules } from './jobs.interface';
-
-const jobsSchema = new Schema<IJobs>(
-  {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+const jobsSchema = new mongoose_1.Schema({
     title: { type: String, required: true },
     thumbnailIcon: { type: String, required: true },
     description: { type: String, required: true },
@@ -24,21 +23,16 @@ const jobsSchema = new Schema<IJobs>(
     status: { type: String, required: true, default: 'active' },
     isFeatured: { type: 'boolean', default: false },
     isDeleted: { type: 'boolean', default: false },
-  },
-  {
+}, {
     timestamps: true,
-  },
-);
-
+});
 jobsSchema.pre('find', function (next) {
-  this.where({ isDeleted: { $ne: true } });
-  next();
+    this.where({ isDeleted: { $ne: true } });
+    next();
 });
-
 jobsSchema.pre('aggregate', function (next) {
-  this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
-  next();
+    this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
+    next();
 });
-
-const Jobs = model<IJobs, IJobsModules>('Jobs', jobsSchema);
-export default Jobs;
+const Jobs = (0, mongoose_1.model)('Jobs', jobsSchema);
+exports.default = Jobs;

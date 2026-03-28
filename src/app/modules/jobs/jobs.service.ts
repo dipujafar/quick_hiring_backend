@@ -58,10 +58,35 @@ const deleteJobs = async (id: string) => {
   return result;
 };
 
+// ----------------------------- feature jobs service -----------------------------
+const featureJobs = async (id: string, isFeatured: boolean) => {
+  const result = await Jobs.findByIdAndUpdate(
+    id,
+    { isFeatured },
+    { new: true },
+  );
+  if (!result) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      'Failed to update job feature status',
+    );
+  }
+  return result;
+};
+
+const getFeaturedJobs = async (query: Record<string, any>) => {
+  query['isDeleted'] = false;
+  query['isFeatured'] = true;
+  const result = await Jobs.find(query);
+  return result;
+};
+
 export const jobsService = {
   createJobs,
   getAllJobs,
   getJobsById,
   updateJobs,
   deleteJobs,
+  featureJobs,
+  getFeaturedJobs,
 };

@@ -1,4 +1,4 @@
-// types/global.d.ts বা index.ts এর শুরুর দিকে
+// types/global.d.ts
 import { Server as SocketIOServer } from 'socket.io';
 
 declare global {

@@ -20,6 +20,7 @@ export interface IJobs {
   responsibilities: string;
   benefits: string;
   status: string;
+  isFeatured: boolean;
   isDeleted: boolean;
 }
 
